@@ -1,0 +1,8 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>DeadClap>cwelch-renovate"
+  ],
+  "labels": ["Auto-Update"],
+  "automerge": true
+}
