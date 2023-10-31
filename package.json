@@ -1,10 +1,12 @@
 {
   "name": "tblrp-bot",
   "version": "0.0.1",
-  "description": "Bot used for the THin Blue Line Roleplay Server",
+  "description": "Bot used for the Thin Blue Line Roleplay Server",
   "main": "index.js",
   "scripts": {
-    "test": "\"\""
+    "prestart": "npm install",
+    "start": "node index.js",
+    "lint": "eslint ."
   },
   "author": "Christopher Welch",
   "license": "ISC"
