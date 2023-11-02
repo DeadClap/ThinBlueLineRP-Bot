@@ -1,7 +1,7 @@
 module.exports = {
-	name: 'Mod Action: Hate Speech',
+	name: 'MA: Hate Speech',
 	data: {
-		name: 'Mod Action: Hate Speech',
+		name: 'MA: Hate Speech',
 		type: 2,
 	},
 	async execute(interaction) {
