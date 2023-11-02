@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "npm install",
     "start": "node index.js",
-    "lint": "eslint ."
+    "lint": "eslint . --no-inline-config"
   },
   "author": "Christopher Welch",
   "license": "ISC",
