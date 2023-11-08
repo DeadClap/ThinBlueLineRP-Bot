@@ -59,6 +59,7 @@ module.exports = {
 			}
 		} catch (error) {
 			console.error('Error handling modal submission:', error);
+			await interaction.followUp({content: 'Modal Expired. Please press cancel and try again.', ephemeral: true});
 		}
 	},
 };
