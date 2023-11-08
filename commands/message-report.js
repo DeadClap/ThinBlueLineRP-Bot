@@ -1,12 +1,11 @@
-const {ActionRowBuilder, TextInputBuilder, ModalBuilder, EmbedBuilder} = require('@discordjs/builders');
-const {TextInputStyle} = require('discord.js');
-
+const {ActionRowBuilder, TextInputBuilder, ModalBuilder, EmbedBuilder, ContextMenuCommandBuilder} = require('@discordjs/builders');
+const {TextInputStyle, ApplicationCommandType} = require('discord.js');
+const commandName = 'Report Message';
 module.exports = {
-	name: 'Report Message',
-	data: {
-		name: 'Report Message',
-		type: 3, // Type 3 represents a slash command
-	},
+	name: commandName,
+	data: new ContextMenuCommandBuilder()
+		.setName(commandName)
+		.setType(ApplicationCommandType.Message),
 	async execute(interaction) {
 		const {targetMessage} = interaction;
 		const reportChannelID = '1171178751065866332'; // Replace with your desired report channel ID
