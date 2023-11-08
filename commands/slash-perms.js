@@ -1,9 +1,11 @@
 const {SlashCommandBuilder} = require('@discordjs/builders');
+const {PermissionFlagsBits} = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('botpermissions')
-		.setDescription('Check the bot\'s permissions in this guild'),
+		.setDescription('Check the bot\'s permissions in this guild')
+		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 	async execute(interaction) {
 		// Get the member (bot) object
 		const member = interaction.guild.members.cache.get(interaction.client.user.id);

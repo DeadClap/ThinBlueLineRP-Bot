@@ -1,23 +1,37 @@
+const {ContextMenuCommandBuilder, ApplicationCommandType} = require('discord.js');
+
+const commandName = 'MQ: User Perms'; // Command name
+
 module.exports = {
-	name: 'MQ: User Perms',
-	data: {
-		name: 'MQ: User Perms',
-		type: 2,
-	},
+	name: commandName, // Command name
+	data: new ContextMenuCommandBuilder()
+		.setName(commandName)
+		.setType(ApplicationCommandType.User),
 	async execute(interaction) {
-		const target = interaction.targetMember;
-		// Get the member (bot) object
-		const member = await interaction.guild.members.fetch(target.id);
+		// This function is the main code executed when the command is invoked.
 
-		if (member) {
-			// Check and format the permissions
-			const permissions = member.permissions.toArray();
-			const formattedPermissions = permissions.map(permission => `\`${permission}\``).join(', ');
+		const target = interaction.targetMember; // Get the targeted user (member)
 
-			// Respond with the bot's permissions
-			await interaction.reply({content: `User permissions in this guild: ${formattedPermissions}`, ephemeral: true});
-		} else {
-			await interaction.reply({content: 'Unable to fetch bot information.', ephemeral: true});
+		try {
+			// Fetch the member (bot) object based on the target user's ID
+			const member = await interaction.guild.members.fetch(target.id);
+
+			if (member) {
+				// Check and format the permissions of the target user
+				const permissions = member.permissions.toArray();
+				const formattedPermissions = permissions.map(permission => `\`${permission}\``).join(', ');
+
+				// Respond with the target user's permissions
+				await interaction.reply({content: `User permissions in this guild: ${formattedPermissions}`, ephemeral: true});
+			} else {
+				// Handle the case where the bot is unable to fetch information about the target user
+				await interaction.reply({content: 'Unable to fetch user information.', ephemeral: true});
+			}
+		} catch (error) {
+			// Handle any errors that occur during the fetch operation
+			console.error('Error fetching user information:', error);
+			await interaction.reply({content: 'An error occurred while fetching user information.', ephemeral: true});
 		}
 	},
 };
+
