@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const token = process.env.DISCORD_TOKEN; // Access the bot token from the environment variable
 
-const client = new Client({intents: ['Guilds']});
+const client = new Client({intents: ['Guilds', 'GuildMembers']});
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 for (const file of eventFiles) {
