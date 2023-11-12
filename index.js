@@ -1,11 +1,12 @@
 require('dotenv').config(); // Load environment variables from .env
 
-const {Client, Collection} = require('discord.js');
+const {Client, Collection, GatewayIntentBits, Partials} = require('discord.js');
 const fs = require('fs');
 
 const token = process.env.DISCORD_TOKEN; // Access the bot token from the environment variable
 
-const client = new Client({intents: ['Guilds', 'GuildMembers']});
+const GATEWAYINTENTS = [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
+const client = new Client({intents: GATEWAYINTENTS, partials: [Partials.Message, Partials.Reaction]});
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 for (const file of eventFiles) {
