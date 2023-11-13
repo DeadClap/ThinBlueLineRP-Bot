@@ -11,6 +11,7 @@ const client = new Client({intents: GATEWAYINTENTS, partials: [Partials.Message,
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
+	console.log(`Event: ${event.name} in ${file} passed through handler.`);
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args, client));
 	} else {
