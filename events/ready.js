@@ -13,6 +13,7 @@ module.exports = {
 
 		for (const file of commandFiles) {
 			const command = require(`../commands/${file}`);
+			console.log(`Command: ${command.name} in ${file} passed through handler.`);
 			if (typeof command.data === 'object') {
 				commands.push(command.data);
 			} else {
