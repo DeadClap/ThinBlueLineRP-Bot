@@ -1,6 +1,15 @@
+// Import the EmbedBuilder class from the '@discordjs/builders' library
+const {EmbedBuilder} = require('@discordjs/builders');
+
+// Define a constant for the emoji used to indicate a resolved thread
+const resolveEmoji = '✅';
+
+// Export a module with an object containing a 'name' property and an 'execute' asynchronous function
 module.exports = {
 	name: 'threadCreate',
-	async execute(thread, fresh) {
+
+	// The 'execute' function is called when a thread is created
+	async execute(thread, fresh, client) {
 		// Check if the thread is fresh and has a parent
 		if (fresh && thread.parent) {
 			// Check if the thread is in the 'help-desk' category
@@ -8,7 +17,14 @@ module.exports = {
 				// Retrieve available tags from the parent category
 				const availableTags = thread.parent.availableTags || [];
 
-				// Replace 'Bug' and 'Issue' with the actual names of your tags
+				// Fetch the latest message in the thread
+				const messages = await thread.messages.fetch({limit: 1});
+				const firstMessage = messages.first();
+
+				// Add a reaction to the first message
+				firstMessage.react('✅');
+
+				// Define tag names for 'Bug', 'Issue', and 'Resolved'
 				const bugTagName = 'Bug';
 				const issueTagName = 'Issue';
 				const resolvedTagName = 'Resolved';
@@ -36,8 +52,19 @@ module.exports = {
 
 					// If either 'Bug' or 'Issue' tags are present and 'Resolved' tag is not present, send a reply
 					if ((hasBugTag || hasIssueTag) && !hasResolvedTag) {
-						// Send a reply
-						thread.send({content: 'If you are affected with this issue or bug please react with :question:'})
+						// Add a reaction to the first message
+						firstMessage.react('❓');
+
+						// Send a reply with an embedded message
+						const threadEmbed = new EmbedBuilder()
+							.setAuthor({name: client.user.username, iconURL: client.user.displayAvatarURL()})
+							.addFields(
+								{name: 'Also affected?', value: 'If you are affected with this issue or bug please react with :question:'},
+								{name: 'Resolved?', value: `React with ${resolveEmoji}`},
+							);
+
+						// Send the reply to the thread
+						thread.send({content: `${thread.guild.roles.cache.filter(r => r.name === 'Tech Troubleshooter (Technical Support)').first()}`, embeds: [threadEmbed]})
 							.catch(error => console.error('Error sending reply:', error));
 					}
 				}
@@ -45,4 +72,3 @@ module.exports = {
 		}
 	},
 };
-
