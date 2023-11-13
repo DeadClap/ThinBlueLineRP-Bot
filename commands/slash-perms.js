@@ -1,9 +1,10 @@
 const {SlashCommandBuilder} = require('@discordjs/builders');
 const {PermissionFlagsBits} = require('discord.js');
-
+const commandName = 'botpermissions';
 module.exports = {
+	name: commandName,
 	data: new SlashCommandBuilder()
-		.setName('botpermissions')
+		.setName(commandName)
 		.setDescription('Check the bot\'s permissions in this guild')
 		.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
 	async execute(interaction) {
