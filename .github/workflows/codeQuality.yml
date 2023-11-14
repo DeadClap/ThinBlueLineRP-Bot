@@ -1,8 +1,11 @@
 name: Code Quality Check
 
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize]
+
+permissions:
+  pull-requests: write
 
 jobs:
   lint-and-label:
