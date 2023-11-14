@@ -57,5 +57,7 @@ jobs:
         run: echo "LINT_LABEL=lint-failed" >> $GITHUB_ENV
 
       - name: Display lint label
-        run: echo "::set-output name=LINT_LABEL::${{ env.LINT_LABEL }}"
-        id: set-lint-label
+        run: echo "LINT_LABEL=${{ env.LINT_LABEL }}" >> $GITHUB_ENV
+
+      - name: Set Environment File
+        run: echo "::save-state name=ENV_FILE::$(echo 'LINT_LABEL=${{ env.LINT_LABEL }}' >> $GITHUB_ENV)"
