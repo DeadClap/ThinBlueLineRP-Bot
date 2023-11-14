@@ -47,3 +47,15 @@ jobs:
       - name: Display labels
         run: echo "::set-output name=PR_LABELS::${{ env.PR_LABELS }}"
         id: set-labels
+
+      - name: Add Label on Lint Success
+        if: success() && env.LINT_STATUS == '0'
+        run: echo "LINT_LABEL=lint-passed" >> $GITHUB_ENV
+
+      - name: Add Label on Lint Failure
+        if: failure() || env.LINT_STATUS != '0'
+        run: echo "LINT_LABEL=lint-failed" >> $GITHUB_ENV
+
+      - name: Display lint label
+        run: echo "::set-output name=LINT_LABEL::${{ env.LINT_LABEL }}"
+        id: set-lint-label
