@@ -71,6 +71,5 @@ jobs:
       - name: Display lint label
         run: echo "LINT_LABEL=${{ env.LINT_LABEL }}" >> $GITHUB_ENV
 
-      # Step 13: Set Environment File
       - name: Set Environment File
         run: echo "::save-state name=ENV_FILE::$(echo 'LINT_LABEL=${{ env.LINT_LABEL }}' >> $GITHUB_ENV)"
