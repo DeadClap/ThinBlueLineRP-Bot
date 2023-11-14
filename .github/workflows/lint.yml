@@ -32,5 +32,6 @@ jobs:
         run: |
           TOKEN=${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          URL="https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/labels"
+          URL="https://api.github.com/repos/${{ github.repository }}/pulls/${PR_NUMBER}/labels"
           curl -X POST -H "Authorization: token $TOKEN" -H "Accept: application/vnd.github.v3+json" -d '{"labels":["Linted"]}' "$URL"
+      
