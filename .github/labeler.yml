@@ -1,10 +1,7 @@
-Repository:
-- '*'
-
-Commands:
-- any:
-    - "commands/*.js"
-
-Events:
-- any:
-    - "events/*.js"
+labels:
+  - name: Commands
+    patterns:
+      - commands/**
+  - name: Events
+    patterns:
+      - events/**
