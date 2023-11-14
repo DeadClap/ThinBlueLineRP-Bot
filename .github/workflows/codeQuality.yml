@@ -15,13 +15,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 14
+
       - name: Install dependencies
         run: npm install
 
       - name: Lint code
         run: npm run lint
-        continue-on-error: true  # Continue on linting errors, but set an environment variable
+        continue-on-error: true
 
       - name: Set Lint Status
         run: echo "LINT_STATUS=$?" >> $GITHUB_ENV
@@ -30,10 +31,10 @@ jobs:
         uses: actions/labeler@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          configuration-path: .github/labeler.yml  # Specify the path to your labeler configuration
+          configuration-path: .github/labeler.yml
 
       - name: Label PR
-        if: success()  # Only label if linting passed
+        if: success()
         run: echo "PR_LABELS=${{ steps.labeler.outputs.labels }}" >> $GITHUB_ENV
 
       - name: Determine changes
@@ -41,4 +42,5 @@ jobs:
         run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
 
       - name: Display labels
-        run: echo "PR labels: ${{ env.PR_LABELS }}"
+        run: echo "::set-output name=PR_LABELS::${{ env.PR_LABELS }}"
+        id: set-labels
