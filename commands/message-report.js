@@ -1,5 +1,5 @@
 const {ActionRowBuilder, TextInputBuilder, ModalBuilder, EmbedBuilder, ContextMenuCommandBuilder} = require('@discordjs/builders');
-const {TextInputStyle, ApplicationCommandType} = require('discord.js');
+const {TextInputStyle, ApplicationCommandType, Colors} = require('discord.js');
 const commandName = 'Report Message';
 module.exports = {
 	name: commandName,
@@ -55,7 +55,7 @@ module.exports = {
 						{name: 'Author', value: `<@${targetMessage.author.id}>`, inline: true},
 						{name: 'Content', value: `${targetMessage.content} - [Jump to](${targetMessage.url})`},
 						{name: 'Reason of Report', value: reason},
-					);
+					).setColor(Colors.DarkOrange);
 					reportChannel.send({embeds: [report]});
 				}
 
