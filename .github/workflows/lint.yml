@@ -23,5 +23,14 @@ jobs:
         run: npm install
 
       - name: Run ESLint
+        id: lint
         run: npm run lint
         # Replace with your linting command, e.g., "npm run eslint" or "eslint ."
+
+      - name: Add Label on Success
+        if: steps.lint.outcome == 'success'
+        run: |
+          TOKEN=${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          URL="https://api.github.com/repos/${{ github.repository }}/issues/${PR_NUMBER}/labels"
+          curl -X POST -H "Authorization: token $TOKEN" -H "Accept: application/vnd.github.v3+json" -d '{"labels":["Linted"]}' "$URL"
