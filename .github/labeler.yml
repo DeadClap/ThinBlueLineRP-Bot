@@ -1,0 +1,10 @@
+Repository:
+- '*'
+
+Commands:
+- any:
+    - "commands/*.js"
+
+Events:
+- any:
+    - "events/*.js"
