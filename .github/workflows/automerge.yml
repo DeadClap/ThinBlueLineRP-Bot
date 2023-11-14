@@ -1,0 +1,25 @@
+name: Automerge on Lint Check Passing
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  automerge:
+    name: Automerge if Lint Code passed and "Linted" label is present
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Automerge if "Linted" label is present
+        if: contains(github.event.pull_request.labels.*.name, 'Linted')
+        uses: pascalgn/automerge-action@v0.14.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          required_check: Lint Code
