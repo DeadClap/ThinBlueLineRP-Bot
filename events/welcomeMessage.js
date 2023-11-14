@@ -5,7 +5,7 @@ module.exports = {
 	async execute(member) {
 		const welcomeMessage = new EmbedBuilder().setTitle('Welcome to Thin Blue Line RP').addFields(
 			{name: 'Member', value: member.displayName},
-		).setImage(member.user.displayAvatarURL());
+		).setThumbnail(member.user.displayAvatarURL());
 
 		const {systemChannel} = member.guild;
 		console.log(systemChannel.id);
