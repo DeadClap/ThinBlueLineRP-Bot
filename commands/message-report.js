@@ -1,6 +1,6 @@
 const {ActionRowBuilder, TextInputBuilder, ModalBuilder, EmbedBuilder, ContextMenuCommandBuilder} = require('@discordjs/builders');
 const {TextInputStyle, ApplicationCommandType} = require('discord.js');
-const commandName = 'Report Message';x
+const commandName = 'Report Message';
 module.exports = {
 	name: commandName,
 	data: new ContextMenuCommandBuilder()
