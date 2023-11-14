@@ -1,0 +1,19 @@
+name: Apply Labels
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Use actions/labeler
+        uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/labeler.yml
