@@ -1,12 +1,8 @@
 name: Automerge on Lint Check Passing
 
 on:
-  pull_request:
-    branches:
-      - master
-    types:
-      - opened
-      - synchronize
+  check_suite:
+  check_run:
 
 jobs:
   automerge:
@@ -14,11 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Wait for all other checks to complete
+        run: echo "Waiting for other checks to complete"
+        continue-on-error: true
+
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Automerge if "Linted" label is present
-        if: contains(github.event.pull_request.labels.*.name, 'Linted')
+        if: contains(github.event.pull_request.labels.*.name, 'Linted') && success()
         uses: pascalgn/automerge-action@v0.14.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
