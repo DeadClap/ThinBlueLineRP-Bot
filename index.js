@@ -1,4 +1,6 @@
-require('dotenv').config(); // Load environment variables from .env
+if (process.env.environment !== 'PROD') {
+	require('dotenv').config(); // Load environment variables from .env
+}
 
 const {Client, Collection, GatewayIntentBits, Partials} = require('discord.js');
 const fs = require('fs');
