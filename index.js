@@ -1,4 +1,4 @@
-if (process.env.enviornment === 'DEV') {
+if (process.env.environment !== 'PROD') {
 	require('dotenv').config(); // Load environment variables from .env
 }
 
