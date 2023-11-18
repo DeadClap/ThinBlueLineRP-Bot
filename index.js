@@ -1,5 +1,5 @@
 if (process.env.environment !== 'PROD') {
-	console.log('Non Prod ENV');
+	console.log('Non Prod ENV!');
 	require('dotenv').config(); // Load environment variables from .env
 }
 
