@@ -1,25 +1,24 @@
-labels:
-  - Documentation:
-      - '*.md'
-      - 'docs/**'
-    
-  - Config:
-      - '.github/**'
-      - '*.config.*'
-    
-  - Events:
-      - 'events/**'
-    
-  - Commands:
-      - 'commands/**'
+Documentation:
+  - '*.md'
+  - 'docs/**'
+  
+Config:
+  - '.github/**'
+  - '*.config.*'
+  
+Events:
+  - 'events/**'
+  
+Commands:
+  - 'commands/**'
 
-  - MessageCommand:
-      - 'commands/message*'
-    
-  - SlashCommand:
-      - 'commands/slash*'
-    
-  - UserCommand:
-      - 'commands/user*'
-    
+MessageCommand:
+  - 'commands/message*'
+  
+SlashCommand:
+  - 'commands/slash*'
+  
+UserCommand:
+  - 'commands/user*'
+  
 # Add more labels and patterns as needed.
