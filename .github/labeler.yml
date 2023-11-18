@@ -7,7 +7,7 @@ Core:
 
 Git:
 - any:
-  - '.github'
+  - '.github/**'
 
 Commands:
 - any:
