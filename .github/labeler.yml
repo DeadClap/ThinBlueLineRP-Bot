@@ -1,5 +1,13 @@
 Repository:
-- '*'
+- any: ['*']
+  all: ['!index.js', '!.eslintrc.js','!package.json']
+
+Core:
+- any: ['index.js', 'package.json', '.eslintrc.js']
+
+Git:
+- any:
+  - '.github'
 
 Commands:
 - any:
