@@ -20,5 +20,10 @@ SlashCommand:
   
 UserCommand:
   - 'commands/user*'
+
+Core:
+  - 'index.js'
+  - '.eslintrc.js'
+  - 'package.json'
   
 # Add more labels and patterns as needed.
