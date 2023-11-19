@@ -1,19 +1,29 @@
-Repository:
-- any: ['*']
-  all: ['!index.js', '!.eslintrc.js','!package.json']
+Documentation:
+  - '*.md'
+  - 'docs/**'
+  
+Config:
+  - '.github/**'
+  - '*.config.*'
+  
+Events:
+  - 'events/**'
+  
+Commands:
+  - 'commands/**'
+
+MessageCommand:
+  - 'commands/message*'
+  
+SlashCommand:
+  - 'commands/slash*'
+  
+UserCommand:
+  - 'commands/user*'
 
 Core:
-- any: ['index.js', 'package.json', '.eslintrc.js']
-
-Git:
-- any:
-  - '.github/**'
-  - '.github/*/**'
-
-Commands:
-- any:
-    - "commands/*.js"
-
-Events:
-- any:
-    - "events/*.js"
+  - 'index.js'
+  - '.eslintrc.js'
+  - 'package.json'
+  
+# Add more labels and patterns as needed.
