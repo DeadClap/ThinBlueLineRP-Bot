@@ -29,7 +29,7 @@ module.exports = {
 			}
 		} catch (error) {
 			// Handle any errors that occur during the fetch operation
-			console.error('Error fetching user information:', error);
+			interaction.client.emit('log', 'error', 'bleh', 'Error fetching user information:', error);
 			await interaction.reply({content: 'An error occurred while fetching user information.', ephemeral: true});
 		}
 	},

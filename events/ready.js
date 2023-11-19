@@ -13,7 +13,7 @@ module.exports = {
 
 		for (const file of commandFiles) {
 			const command = require(`../commands/${file}`);
-			console.log(`Command: ${command.name} in ${file} passed through handler.`);
+			client.emit('log', 'DEBUG', 'bleh', `Command: ${command.name} in ${file} passed through handler.`);
 			if (typeof command.data === 'object') {
 				commands.push(command.data);
 			} else {
@@ -25,7 +25,7 @@ module.exports = {
 
 		(async () => {
 			try {
-				console.log('Started applying slash commands to Discord.');
+				client.emit('log', 'info', 'bleh', 'Started applying slash commands to Discord.');
 				// Await rest.put(Routes.applicationCommands(CLIENT_ID), {
 				//     body: gcommands,
 				// })
@@ -33,12 +33,12 @@ module.exports = {
 					body: commands,
 				});
 
-				console.log('Successfully applied slash commands to Discord.');
+				client.emit('log', 'info', 'bleh', 'Successfully applied slash commands to Discord.');
 			} catch (error) {
-				console.error(error);
+				client.emit('log', 'error', 'bleh', error);
 			}
 		})();
 
-		console.log(`Logged in as ${client.user.tag}`);
+		client.emit('log', 'info', 'bleh', `Logged in as ${client.user.tag}`);
 	},
 };

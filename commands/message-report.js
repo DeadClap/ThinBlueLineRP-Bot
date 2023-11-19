@@ -67,7 +67,7 @@ module.exports = {
 			}
 		} catch (error) {
 			// Handle errors during modal submission
-			console.error('Error handling modal submission:', error);
+			interaction.client.emit('log', 'error', 'bleh', 'Error handling modal submission:', error);
 			await interaction.followUp({content: 'Modal Expired. Please press cancel and try again.', ephemeral: true});
 		}
 	},
