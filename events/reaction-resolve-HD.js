@@ -9,12 +9,8 @@ module.exports = {
 		}
 
 		if (isHelpDeskThread(reaction.message)) {
-			console.log('We are in the HD');
-
 			if (reaction.emoji.name === '✅') {
-				console.log('Resolve check received.');
 				if (canManageThread(user, reaction.message)) {
-					console.log('User can resolve.');
 					updateThreadLockStatus(reaction.message, user);
 					await reaction.users.remove(user);
 				} else {

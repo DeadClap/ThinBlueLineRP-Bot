@@ -65,7 +65,7 @@ module.exports = {
 
 						// Send the reply to the thread
 						thread.send({content: `${thread.guild.roles.cache.filter(r => r.name === 'Tech Troubleshooter (Technical Support)').first()}`, embeds: [threadEmbed]})
-							.catch(error => console.error('Error sending reply:', error));
+							.catch(error => client.emit('log', 'error', 'bleh', 'Error sending reply:', error));
 					}
 				}
 			}
