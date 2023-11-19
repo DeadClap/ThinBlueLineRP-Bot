@@ -13,7 +13,7 @@ module.exports = {
 
 		for (const file of commandFiles) {
 			const command = require(`../commands/${file}`);
-			client.emit('log', 'DEBUG', 'bleh', `Command: ${command.name} in ${file} passed through handler.`);
+			client.emit('log', 'debug', 'bleh', `Command: ${command.name} in ${file} passed through handler.`);
 			if (typeof command.data === 'object') {
 				commands.push(command.data);
 			} else {
