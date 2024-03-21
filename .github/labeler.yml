@@ -1,29 +1,41 @@
 Documentation:
-  - '*.md'
-  - 'docs/**'
+  - changed-files:
+    - any-glob-to-any-file: ['docs/*', '**/*.md']
   
 Config:
-  - '.github/**'
-  - '*.config.*'
+  - changed-files:
+    - any-glob-to-any-file: ['config/*', '**/*.json', '**/*.yml', '**/*.yaml']
   
 Events:
-  - 'events/**'
+  - changed-files:
+    - any-glob-to-any-file: ['events/*']
   
 Commands:
-  - 'commands/**'
+  - changed-files:
+    - any-glob-to-any-file: ['commands/*']
 
 MessageCommand:
-  - 'commands/message*'
+  - changed-files:
+    - any-glob-to-any-file: ['commands/message*']
   
 SlashCommand:
-  - 'commands/slash*'
+  - changed-files:
+    - any-glob-to-any-file: ['commands/slash*']
   
 UserCommand:
-  - 'commands/user*'
+  - changed-files:
+    - any-glob-to-any-file: ['commands/user*']
 
 Core:
-  - 'index.js'
-  - '.eslintrc.js'
-  - 'package.json'
-  
+  - changed-files:
+    - any-glob-to-any-file: ['index.js','.eslintrc.js','package.json']
+
+Feature:
+  - head-branch: ['^feat', '^feature']
+
+Fix:
+  - head-branch: ['^fix', '^bug']
+
+Chore:
+  - head-branch: ['^chore', 'chore']    
 # Add more labels and patterns as needed.
